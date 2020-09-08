@@ -9,6 +9,7 @@ import { MatchResults } from "@stencil/router";
 export namespace Components {
     interface AppHome {
         "email": string;
+        "password": string;
     }
     interface AppProfile {
         "match": MatchResults;
@@ -58,6 +59,7 @@ declare global {
 declare namespace LocalJSX {
     interface AppHome {
         "email"?: string;
+        "password"?: string;
     }
     interface AppProfile {
         "match"?: MatchResults;

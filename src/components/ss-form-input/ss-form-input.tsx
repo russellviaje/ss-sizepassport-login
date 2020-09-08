@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop, State, Listen } from '@stencil/core';
+import { Component, Host, h, Prop, State } from '@stencil/core';
 
 @Component({
   tag: 'ss-form-input',
