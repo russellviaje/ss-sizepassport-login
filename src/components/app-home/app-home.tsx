@@ -8,19 +8,27 @@ import { default as Login } from '../../services/loginService';
 })
 export class AppHome {
 
-  @Prop() mailPlaceHolder: string = 'Email';
-  @Prop() passwordPlaceHolder: string = 'Password';
+  @Prop() mailPlaceHolder: string;
+  @Prop() passwordPlaceHolder: string;
+  @Prop() sessionURL: string;
+  @Prop() customerAuthURL: string;
+  @Prop() clientID: string;
 
   private email: string;
   private password: string;
 
   private doLogin (event) {
     event.preventDefault();
-    Login.atteptLogin({ email: this.email, password: this.password });
+    Login.atteptLogin({ 
+      email: this.email,
+      password: this.password,
+      sessionURL: this.sessionURL,
+      customerAuthURL: this.customerAuthURL,
+      clientID: this.clientID
+    });
   }
 
   render() {
-
     return (
       <section class="app-home">
         <h3>Registered Customer</h3>

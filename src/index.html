@@ -19,7 +19,20 @@
 </head>
 <body>
 
-  <ss-login></ss-login>
+  <ss-login
+    mail-place-holder="Emilio"
+  >
+  </ss-login>
 
 </body>
+<script>
+  (async () => {
+    await customElements.whenDefined('ss-login');
+    document.querySelector('ss-login').init({
+      sessionURL: 'https://demo-eu02-suitsupplyworld.demandware.net/s/INT/dw/shop/v20_9/sessions', 
+      clientID: '46f6e40b-b605-4bb2-a162-534b3fbba5e0',
+      customerAuthURL: 'https://demo-eu02-suitsupplyworld.demandware.net/s/INT/dw/shop/v20_9/customers/auth?client_id=46f6e40b-b605-4bb2-a162-534b3fbba5e0'
+    });
+  })();
+</script>
 </html>
