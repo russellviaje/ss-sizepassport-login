@@ -14,14 +14,14 @@ export namespace Components {
     interface AppProfile {
         "match": MatchResults;
     }
-    interface AppRoot {
-    }
     interface SsFormInput {
         "initialValue": string;
         "inputName": string;
         "placeHolder": string;
         "ssInputChange": (inpValue: string) => string;
         "type": string;
+    }
+    interface SsLogin {
     }
 }
 declare global {
@@ -37,23 +37,23 @@ declare global {
         prototype: HTMLAppProfileElement;
         new (): HTMLAppProfileElement;
     };
-    interface HTMLAppRootElement extends Components.AppRoot, HTMLStencilElement {
-    }
-    var HTMLAppRootElement: {
-        prototype: HTMLAppRootElement;
-        new (): HTMLAppRootElement;
-    };
     interface HTMLSsFormInputElement extends Components.SsFormInput, HTMLStencilElement {
     }
     var HTMLSsFormInputElement: {
         prototype: HTMLSsFormInputElement;
         new (): HTMLSsFormInputElement;
     };
+    interface HTMLSsLoginElement extends Components.SsLogin, HTMLStencilElement {
+    }
+    var HTMLSsLoginElement: {
+        prototype: HTMLSsLoginElement;
+        new (): HTMLSsLoginElement;
+    };
     interface HTMLElementTagNameMap {
         "app-home": HTMLAppHomeElement;
         "app-profile": HTMLAppProfileElement;
-        "app-root": HTMLAppRootElement;
         "ss-form-input": HTMLSsFormInputElement;
+        "ss-login": HTMLSsLoginElement;
     }
 }
 declare namespace LocalJSX {
@@ -64,8 +64,6 @@ declare namespace LocalJSX {
     interface AppProfile {
         "match"?: MatchResults;
     }
-    interface AppRoot {
-    }
     interface SsFormInput {
         "initialValue"?: string;
         "inputName"?: string;
@@ -73,11 +71,13 @@ declare namespace LocalJSX {
         "ssInputChange"?: (inpValue: string) => string;
         "type"?: string;
     }
+    interface SsLogin {
+    }
     interface IntrinsicElements {
         "app-home": AppHome;
         "app-profile": AppProfile;
-        "app-root": AppRoot;
         "ss-form-input": SsFormInput;
+        "ss-login": SsLogin;
     }
 }
 export { LocalJSX as JSX };
@@ -86,8 +86,8 @@ declare module "@stencil/core" {
         interface IntrinsicElements {
             "app-home": LocalJSX.AppHome & JSXBase.HTMLAttributes<HTMLAppHomeElement>;
             "app-profile": LocalJSX.AppProfile & JSXBase.HTMLAttributes<HTMLAppProfileElement>;
-            "app-root": LocalJSX.AppRoot & JSXBase.HTMLAttributes<HTMLAppRootElement>;
             "ss-form-input": LocalJSX.SsFormInput & JSXBase.HTMLAttributes<HTMLSsFormInputElement>;
+            "ss-login": LocalJSX.SsLogin & JSXBase.HTMLAttributes<HTMLSsLoginElement>;
         }
     }
 }

@@ -1,7 +1,7 @@
 import { Component, h } from '@stencil/core';
 
 @Component({
-  tag: 'app-root',
+  tag: 'ss-login',
   styleUrl: 'app-root.css',
   shadow: true,
 })

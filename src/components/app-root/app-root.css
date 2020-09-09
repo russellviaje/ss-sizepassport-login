@@ -10,4 +10,5 @@ header {
 :host {
   display: block;
   max-width: 295px;
+  background: white;
 }
