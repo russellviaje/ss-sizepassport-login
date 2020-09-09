@@ -1,12 +1,19 @@
 export default class LoginService {
     static atteptLogin (userData) {
-        const { email, password } = userData;
-        console.debug(`User login attempt --> email: ${email} | password: ${password}`);
+        const { email, password, sessionURL, customerAuthURL, clientID } = userData;
+        console.debug(`
+            User login attempt --> 
+            email: ${email},
+            password: ${password},
+            sessionURL: ${sessionURL},
+            customerAuthURL: ${customerAuthURL},
+            clientID: ${clientID}
+        `);
+
         var auth = window.btoa(email + ':' + password);
         var xhttp = new XMLHttpRequest();
-        var endpointURL = 'https://demo-eu02-suitsupplyworld.demandware.net/s/INT/dw/shop/v20_9/customers/auth?client_id=46f6e40b-b605-4bb2-a162-534b3fbba5e0';
 
-        xhttp.open('POST', endpointURL);
+        xhttp.open('POST', customerAuthURL);
         xhttp.setRequestHeader('Content-type', 'application/json');
         xhttp.setRequestHeader('Authorization', 'Basic ' + auth);
         xhttp.send(JSON.stringify({ type: 'credentials' }));
@@ -17,7 +24,6 @@ export default class LoginService {
                 var response = JSON.parse(this.responseText);
 
                 if (parsedToken != null) {
-                    var sessionURL = 'https://demo-eu02-suitsupplyworld.demandware.net/s/INT/dw/shop/v20_9/sessions';
                     xhttp.onreadystatechange = function () {
                         if (this.readyState === 4 && this.status === 204) {
                             console.debug('You have successfully logged in \n' +
@@ -34,7 +40,7 @@ export default class LoginService {
                     };
                     xhttp.open('POST', sessionURL);
                     xhttp.setRequestHeader('Content-type', 'application/json');
-                    xhttp.setRequestHeader('x-dw-client-id', '46f6e40b-b605-4bb2-a162-534b3fbba5e0');
+                    xhttp.setRequestHeader('x-dw-client-id', clientID);
                     xhttp.setRequestHeader('Authorization', 'Bearer ' + parsedToken);
                     xhttp.send();
                 }

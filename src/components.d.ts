@@ -8,8 +8,11 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { MatchResults } from "@stencil/router";
 export namespace Components {
     interface AppHome {
+        "clientID": string;
+        "customerAuthURL": string;
         "mailPlaceHolder": string;
         "passwordPlaceHolder": string;
+        "sessionURL": string;
     }
     interface AppProfile {
         "match": MatchResults;
@@ -22,6 +25,9 @@ export namespace Components {
         "type": string;
     }
     interface SsLogin {
+        "init": (sessionData: any) => Promise<any>;
+        "mailPlaceHolder": string;
+        "passwordPlaceHolder": string;
     }
 }
 declare global {
@@ -58,8 +64,11 @@ declare global {
 }
 declare namespace LocalJSX {
     interface AppHome {
+        "clientID"?: string;
+        "customerAuthURL"?: string;
         "mailPlaceHolder"?: string;
         "passwordPlaceHolder"?: string;
+        "sessionURL"?: string;
     }
     interface AppProfile {
         "match"?: MatchResults;
@@ -72,6 +81,8 @@ declare namespace LocalJSX {
         "type"?: string;
     }
     interface SsLogin {
+        "mailPlaceHolder"?: string;
+        "passwordPlaceHolder"?: string;
     }
     interface IntrinsicElements {
         "app-home": AppHome;
