@@ -1,4 +1,5 @@
 import { Component, h, Prop } from '@stencil/core';
+import { default as Login } from '../../services/loginService';
 
 @Component({
   tag: 'app-home',
@@ -7,14 +8,18 @@ import { Component, h, Prop } from '@stencil/core';
 })
 export class AppHome {
 
-  @Prop() email: string;
-  @Prop() password: string;
+  @Prop() mailPlaceHolder: string = 'Email';
+  @Prop() passwordPlaceHolder: string = 'Password';
+
+  private email: string;
+  private password: string;
+
+  private doLogin (event) {
+    event.preventDefault();
+    Login.atteptLogin({ email: this.email, password: this.password });
+  }
 
   render() {
-    const mailPlaceHolder: string = 'Email';
-    const passwordPlaceHolder: string = 'Password';
-    const emailInputName: string = 'email';
-    let email: string = this.email || '';
 
     return (
       <section class="app-home">
@@ -22,19 +27,19 @@ export class AppHome {
         <form autocomplete="on" method="POST" novalidate="">
           <div class="input-group">
             <ss-form-input
-              initialValue={email}
-              placeHolder={mailPlaceHolder}
-              ssInputChange={(inpVal: string): string => email = inpVal}
-              inputName={emailInputName}
+              initialValue={this.email}
+              placeHolder={this.mailPlaceHolder}
+              ssInputChange={(inpVal: string): string => this.email = inpVal}
+              inputName="email"
             />
           </div>
           <div class="input-group">
             <ss-form-input
               initialValue=""
               type="password"
-              placeHolder={passwordPlaceHolder}
+              placeHolder={this.passwordPlaceHolder}
               ssInputChange={(inpVal: string): string => this.password = inpVal}
-              inputName={emailInputName}
+              inputName="password"
             />
           </div>
           <div class="forgot-password">
@@ -43,7 +48,12 @@ export class AppHome {
             </stencil-route-link>
           </div>
           <div class="button-container">
-            <button class="primary login">login</button>
+            <button 
+            class="primary login"
+            onClick={e => this.doLogin(e)}
+            >
+              login
+            </button>
           </div>
         </form>
       </section>

@@ -8,8 +8,8 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { MatchResults } from "@stencil/router";
 export namespace Components {
     interface AppHome {
-        "email": string;
-        "password": string;
+        "mailPlaceHolder": string;
+        "passwordPlaceHolder": string;
     }
     interface AppProfile {
         "match": MatchResults;
@@ -58,8 +58,8 @@ declare global {
 }
 declare namespace LocalJSX {
     interface AppHome {
-        "email"?: string;
-        "password"?: string;
+        "mailPlaceHolder"?: string;
+        "passwordPlaceHolder"?: string;
     }
     interface AppProfile {
         "match"?: MatchResults;
