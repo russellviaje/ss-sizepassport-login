@@ -1,4 +1,4 @@
-import { Component, h, Prop } from '@stencil/core';
+import { Component, h, Prop, Event, EventEmitter } from '@stencil/core';
 import { default as Login } from '../../services/loginService';
 
 @Component({
@@ -13,6 +13,12 @@ export class AppHome {
   @Prop() sessionURL: string;
   @Prop() customerAuthURL: string;
   @Prop() clientID: string;
+  @Event({
+    eventName: 'ssLogin:success',
+    composed: true,
+    cancelable: true,
+    bubbles: true,
+  }) loginSuccess: EventEmitter<AppHome>;
 
   private email: string;
   private password: string;
@@ -25,6 +31,13 @@ export class AppHome {
       sessionURL: this.sessionURL,
       customerAuthURL: this.customerAuthURL,
       clientID: this.clientID
+    })
+    .then( (response) => {
+      this.loginSuccess.emit(response); 
+      console.debug(`service success:: ${response}`)
+    })
+    .catch((response) => {
+      console.debug(`service error:: ${response}`)
     });
   }
 

@@ -67,6 +67,7 @@ declare namespace LocalJSX {
         "clientID"?: string;
         "customerAuthURL"?: string;
         "mailPlaceHolder"?: string;
+        "onSsLogin:success"?: (event: CustomEvent<AppHome>) => void;
         "passwordPlaceHolder"?: string;
         "sessionURL"?: string;
     }
