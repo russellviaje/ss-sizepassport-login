@@ -59,8 +59,12 @@ export default class LoginService {
                             }
                         } else if (this.status === 401) {
                             reject('Invalid username and password');
+                        } else {
+                            reject('Unknown error');
                         }
                     };
+                } else {
+                    reject('Unknown error 2');
                 }
             }
         })

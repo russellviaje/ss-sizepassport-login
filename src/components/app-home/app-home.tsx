@@ -23,22 +23,22 @@ export class AppHome {
   private email: string;
   private password: string;
 
-  private doLogin (event) {
+  private doLogin(event) {
     event.preventDefault();
-    Login.atteptLogin({ 
+    Login.atteptLogin({
       email: this.email,
       password: this.password,
       sessionURL: this.sessionURL,
       customerAuthURL: this.customerAuthURL,
       clientID: this.clientID
     })
-    .then( (response) => {
-      this.loginSuccess.emit(response); 
-      console.debug(`service success:: ${response}`)
-    })
-    .catch((response) => {
-      console.debug(`service error:: ${response}`)
-    });
+      .then((response) => {
+        this.loginSuccess.emit(response);
+        console.debug(`service success:: ${response}`)
+      })
+      .catch((response) => {
+        console.debug(`service error:: ${response}`)
+      });
   }
 
   render() {
@@ -69,9 +69,9 @@ export class AppHome {
             </stencil-route-link>
           </div>
           <div class="button-container">
-            <button 
-            class="primary login"
-            onClick={e => this.doLogin(e)}
+            <button
+              class="primary login"
+              onClick={e => this.doLogin(e)}
             >
               login
             </button>
